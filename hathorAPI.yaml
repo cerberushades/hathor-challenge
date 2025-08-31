@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Hathor API
+  version: 1.0.0
+  description: |
+    ## Petstore
+
+    Welcome to the Hathor API Documentation website! 
+
+    **Base URL**  
+    `https://hathor.example.com/v1`
+
+servers:
+  - url: https://hathor.example.com/v1
+
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ PATHS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+paths:
+  /counter:
+    get:
+      summary: Return the value on index N
+      operationId: returnNIndex
+      parameters:
+        - name: index
+          in: query
+          description: The index to return the value
+          schema: { type: integer}
+      responses:
+        "200":
+          description: Number on index N
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Numbers" }
+      x-codeSamples:
+        - lang: cURL
+          label: CLI
+          source: |
+            curl -L https://hathor.example.com/v1/pets
+        - lang: JavaScript
+          label: Fetch
+          source: |
+            fetch('https://hathor.example.com/v1/pets')
+              .then(r => r.json())
+              .then(console.log)
+
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ COMPONENTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+components:
+  schemas:
+    Numbers:
+      type: string
