@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import services
 
-app = FastAPI(title="Hathor Counter API", description="This API can be used to create a list with numbers and manipulate each of itd elements.", version="1.0.0")
+app = FastAPI(title="Hathor Counter API", description="This API can be used to create a list of numbers and manipulate each of its elements.", version="1.0.0")
 
 
 class CounterInit(BaseModel):
