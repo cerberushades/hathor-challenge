@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import services
 
-app = FastAPI(title="Contador API", version="1.0.0")
+app = FastAPI(title="Hathor Counter API", description="This API can be used to create a list with numbers and manipulate each of itd elements.", version="1.0.0")
 
 
 class CounterInit(BaseModel):
@@ -14,13 +14,13 @@ class IndexPayload(BaseModel):
     index: int
 
 
-@app.post("/start")
+@app.post("/start", tags=["List Manipulation Methods"])
 def start_counter(payload: CounterInit):
     result = services.start_counter(payload.counter)
     return {"list": result}
 
 
-@app.get("/value/{index}")
+@app.get("/value/{index}", tags=["List Manipulation Methods"])
 def return_value(index: int):
     try:
         value = services.return_value(index)
@@ -29,7 +29,7 @@ def return_value(index: int):
         raise HTTPException(status_code=400, detail="Índice inválido")
 
 
-@app.post("/increment")
+@app.post("/increment", tags=["List Manipulation Methods"])
 def increment(payload: IndexPayload):
     try:
         value = services.increment(payload.index)
@@ -38,7 +38,7 @@ def increment(payload: IndexPayload):
         raise HTTPException(status_code=400, detail="Índice inválido")
 
 
-@app.post("/set_max")
+@app.post("/set_max", tags=["List Manipulation Methods"])
 def set_max():
     result = services.set_max()
     return {"list": result}
